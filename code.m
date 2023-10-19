@@ -5,11 +5,11 @@ push -5
 push 3
 swap
 pall
-div
+mul
 pall
 pop
 pop
 pall
 sub
 pall
-div
+mul
