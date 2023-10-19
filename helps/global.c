@@ -7,6 +7,7 @@ char *allowed[] = {
 	"pint",
 	"swap",
 	"add",
+	"nop",
 	NULL
 };
 

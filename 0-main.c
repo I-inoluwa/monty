@@ -56,6 +56,7 @@ int operations(int line_number, stack_t **stack)
 		{"pint", _pint},
 		{"swap", _swap},
 		{"add", _add},
+		{"nop", NULL},
 		{NULL, NULL}
 	};
 
@@ -80,6 +81,8 @@ int operations(int line_number, stack_t **stack)
 	{
 		if (match_str(code_arr[0], opcodes[i].opcode))
 		{
+			if (opcodes[i].f == NULL)
+				break;
 			opcodes[i].f(stack, line_number);
 			break;
 		}
