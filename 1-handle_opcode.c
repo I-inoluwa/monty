@@ -42,7 +42,7 @@ void LIFO_pop(stack_t **stack, unsigned int line_number)
 
 	(void)line_number;
 	if (*stack == NULL)
-		return;
+		handle_error(*stack, line_number, "can't pop an empty stack", NULL);
 
 	node = *stack;
 	*stack = node->next;
