@@ -8,6 +8,7 @@ char *allowed[] = {
 	"swap",
 	"add",
 	"nop",
+	"sub",
 	NULL
 };
 

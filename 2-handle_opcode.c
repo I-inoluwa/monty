@@ -30,3 +30,17 @@ void _add(stack_t **stack, unsigned int line_number)
 	
 	LIFO_pop(stack, line_number);
 }
+
+void _sub(stack_t **stack, unsigned int line_number)
+{
+	stack_t *top = NULL, *bot = NULL;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+		handle_error(*stack, line_number, "can't sub, stack too short", NULL);
+	
+	top = *stack;
+	bot = (*stack)->next;
+	bot->n -= top->n;
+	
+	LIFO_pop(stack, line_number);
+}

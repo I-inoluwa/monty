@@ -8,11 +8,6 @@ pop
 pop
 pop
 pall
-swap
+sub
 pall
-add
-pall
-nop
-nop
-nop
-add
+sub
