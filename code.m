@@ -1,15 +1,15 @@
 push 1
-pint
 push 2
 push 5
 push -5
-pint
 push 3
-pint
-pop
+swap
 pop
 pop
 pop
 pall
+swap
+pall
 pop
-pop
+pall
+swap

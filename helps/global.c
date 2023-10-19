@@ -5,6 +5,7 @@ char *allowed[] = {
 	"pall",
 	"pop",
 	"pint",
+	"swap",
 	NULL
 };
 
