@@ -4,10 +4,12 @@ push 5
 push -5
 push 3
 swap
-pop
+pall
+div
+pall
 pop
 pop
 pall
 sub
 pall
-sub
+div

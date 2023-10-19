@@ -9,6 +9,7 @@ char *allowed[] = {
 	"add",
 	"nop",
 	"sub",
+	"div",
 	NULL
 };
 

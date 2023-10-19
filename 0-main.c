@@ -58,6 +58,7 @@ int operations(int line_number, stack_t **stack)
 		{"add", _add},
 		{"nop", NULL},
 		{"sub", _sub},
+		{"div", _div},
 		{NULL, NULL}
 	};
 
