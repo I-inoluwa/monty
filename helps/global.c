@@ -11,6 +11,7 @@ char *allowed[] = {
 	"sub",
 	"div",
 	"mul",
+	"mod",
 	NULL
 };
 

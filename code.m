@@ -4,12 +4,11 @@ push 5
 push -5
 push 3
 swap
-pall
-mul
-pall
+mod
 pop
 pop
+push 0
+swap
+mod
 pall
-sub
-pall
-mul
+mod
