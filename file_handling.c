@@ -9,7 +9,7 @@
 int handle_file(char *filename, stack_t **stack)
 {
 	char c, *line = NULL;
-	int i = 0, fd = 0, xstat = -1, bytes = 0;
+	int i = 0, fd = 0, xstat = 0, bytes = 0;
 	unsigned int line_number = 1;
 
 	fd = open(filename, O_RDONLY);
@@ -20,8 +20,8 @@ int handle_file(char *filename, stack_t **stack)
 		if (line == NULL)
 		{
 			error_out("Error", "malloc failed", NULL);
-			close(fd);
-			exit(EXIT_FAILURE);
+			xstat = -1;
+			break;
 		}
 		for (i = 0; i < 1024; i++)
 		{
@@ -35,6 +35,9 @@ int handle_file(char *filename, stack_t **stack)
 		xstat = operations(line, line_number, stack, fd);
 
 		free(line);
+		if (xstat == -1)
+			break;
+
 		if (bytes == 0 || bytes == -1)
 			break;
 		

@@ -13,9 +13,10 @@ int main(int argc, char **argv)
 
 	
 	xstat = handle_file(argv[1], &stack);
-	(void)xstat;
-
 	free_stack(stack);
+
+	if (xstat == -1)
+		exit(EXIT_FAILURE);
 
 	return (0);
 }
@@ -37,10 +38,9 @@ int operations(char *line, int line_number, stack_t **stack, int fd)
 
 	if (validity_check(code_arr[0], code_arr[1], line_number))
 	{
-		free(line);
 		free_arr(code_arr);
-		close(fd);
-		exit(EXIT_FAILURE);
+		(void)fd;
+		return (-1);
 	}
 
 	for (i = 0; i < 3; i++)
