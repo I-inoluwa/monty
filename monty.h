@@ -80,6 +80,8 @@ void LIFO_pop(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 void _pint(stack_t **stack, unsigned int line_number);
 void _swap(stack_t **stack, unsigned int line_number);
+void _add(stack_t **stack, unsigned int line_number);
+
 
 void start_operation(stack_t **stack);
 int operations(int line_number, stack_t **stack);

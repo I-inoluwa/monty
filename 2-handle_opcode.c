@@ -16,3 +16,17 @@ void _swap(stack_t **stack, unsigned int line_number)
 	cur->prev = NULL;
 	*stack = cur;
 }
+
+void _add(stack_t **stack, unsigned int line_number)
+{
+	stack_t *top = NULL, *bot = NULL;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+		handle_error(*stack, line_number, "can't add, stack too short", NULL);
+	
+	top = *stack;
+	bot = (*stack)->next;
+	bot->n += top->n;
+	
+	LIFO_pop(stack, line_number);
+}

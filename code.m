@@ -10,6 +10,6 @@ pop
 pall
 swap
 pall
-pop
+add
 pall
-swap
+add

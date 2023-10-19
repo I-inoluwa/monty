@@ -54,7 +54,9 @@ int operations(int line_number, stack_t **stack)
 		{"pall", _pall},
 		{"pop", LIFO_pop},
 		{"pint", _pint},
-		{"swap", _swap}
+		{"swap", _swap},
+		{"add", _add},
+		{NULL, NULL}
 	};
 
 	if (line_arr == NULL)
@@ -74,7 +76,7 @@ int operations(int line_number, stack_t **stack)
 	if (match_str(code_arr[0], "push"))
 		_push(stack, line_number, code_arr[1]);
 
-	for (i = 0; i < 4; i++)
+	for (i = 0; opcodes[i].opcode != NULL; i++)
 	{
 		if (match_str(code_arr[0], opcodes[i].opcode))
 		{
