@@ -36,3 +36,19 @@ void handle_error(stack_t *stack, int line_number, ...)
 
 	exit(EXIT_FAILURE);
 }
+
+void free_stack(stack_t *head)
+{
+	stack_t *cur = NULL;
+
+	if (head == NULL)
+		return;
+
+	cur = head;
+	while (cur != NULL)
+	{
+		cur = head->next;
+		free(head);
+		head = cur;
+	}
+}

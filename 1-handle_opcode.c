@@ -27,6 +27,15 @@ void _push(stack_t **stack, unsigned int line_number, char *value)
 	*stack = node;
 }
 
+void _pint(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL)
+		handle_error(*stack, line_number, "can't pint, stack empty", NULL);
+	
+	printf("%d\n", (*stack)->n);
+
+}
+
 void LIFO_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *node = NULL;
@@ -59,21 +68,5 @@ void _pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", cur->n);
 		cur = cur->next;
 		/*i++;*/
-	}
-}
-
-void free_stack(stack_t *head)
-{
-	stack_t *cur = NULL;
-
-	if (head == NULL)
-		return;
-
-	cur = head;
-	while (cur != NULL)
-	{
-		cur = head->next;
-		free(head);
-		head = cur;
 	}
 }
