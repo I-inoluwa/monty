@@ -39,7 +39,7 @@ void start_operation(stack_t **stack)
 	
 	for (ind = 0; line_arr[ind] != NULL; ind++)
 	{
-		if (!(handle_space(line_arr[ind])))
+		if (!(handle_space_comment(line_arr[ind])))
 			xstat = operations(ind + 1, stack);
 
 		(void)xstat;

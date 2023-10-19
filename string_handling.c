@@ -42,7 +42,7 @@ char *_strdup(char *str)
  * Return: returns (1) on success, (0) on failure;
  */
 
-int handle_space(char *line)
+int handle_space_comment(char *line)
 {
 	size_t ind = 0;
 
@@ -52,7 +52,7 @@ int handle_space(char *line)
 	for (ind = 0; (line[ind] == ' ' || line[ind] == '\t'); ind++)
 		;
 
-	if (line[ind] == '\0')
+	if (line[ind] == '\0' || line[ind] == '#')
 		return (1);
 
 	return (0);

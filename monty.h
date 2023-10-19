@@ -98,6 +98,6 @@ void free_global(stack_t *stack);
 char *handle_file(char *filename, char *line);
 
 char *_strdup(char *str);
-int handle_space(char *line);
+int handle_space_comment(char *line);
 
 #endif
