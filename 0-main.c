@@ -3,7 +3,8 @@
 int main(int argc, char **argv)
 {
 	int xstat = 0;
-	stack_t *stack = NULL;
+	stack_t *stack = NULL;	
+	char *line = NULL;
 
 	if (argc != 2)
 	{
@@ -11,49 +12,86 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	
-	xstat = handle_file(argv[1], &stack);
+	global_define();
+
+	line = handle_file(argv[1], line);
+	line_arr = split_str(line, "\n");
+	free(line);
+
+	start_operation(&stack);
+
 	free_stack(stack);
 
 	if (xstat == -1)
 		exit(EXIT_FAILURE);
 
+	free_arr(line_arr);
+
 	return (0);
 }
 
-int operations(char *line, int line_number, stack_t **stack, int fd)
+void start_operation(stack_t **stack)
 {
-	char **code_arr = NULL;
-	stack_t *node = NULL;
+	int ind = 0, xstat = 0;
+
+	if (line_arr == NULL)
+		return;
+	
+	for (ind = 0; line_arr[ind] != NULL; ind++)
+	{
+		if (!(handle_space(line_arr[ind])))
+			xstat = operations(ind + 1, stack);
+
+		(void)xstat;
+	}
+}
+
+int operations(int line_number, stack_t **stack)
+{
+	char *line = NULL;
 	int i = 0;
 	instruction_t opcodes[] = {
-		{"push", _push},
 		{"pall", _pall},
-		{"pop", LIFO_pop}
+		{"pop", LIFO_pop},
+		{"pint", _pint}
 	};
 
+	if (line_arr == NULL)
+		return (1);
+	
+	line = line_arr[line_number - 1];
 	code_arr = split_str(line, " \t");
 	if (code_arr == NULL)
 		return (99);
 
-	if (validity_check(code_arr[0], code_arr[1], line_number))
+	if (validity_check(code_arr[0], line_number))
 	{
-		free_arr(code_arr);
-		(void)fd;
-		return (-1);
+		free_global(*stack);
+		exit(EXIT_FAILURE);
 	}
+
+	if (match_str(code_arr[0], "push"))
+		_push(stack, line_number, code_arr[1]);
 
 	for (i = 0; i < 3; i++)
 	{
 		if (match_str(code_arr[0], opcodes[i].opcode))
 		{
-			node = opcodes[i].f(stack, make_number(code_arr[1]));
-			if (node != NULL)
-				free(node);
+			opcodes[i].f(stack, line_number);
 			break;
 		}
 	}
 
 	free_arr(code_arr);
+	code_arr = NULL;
 	return (i);
+}
+
+void free_global(stack_t *stack)
+{
+	free_stack(stack);
+	free_arr(line_arr);
+	free_arr(code_arr);
+	code_arr = NULL;
+	line_arr = NULL;
 }

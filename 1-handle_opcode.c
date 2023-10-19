@@ -1,56 +1,57 @@
 #include "monty.h"
 
-stack_t *_push(stack_t **stack, int val)
+void _push(stack_t **stack, unsigned int line_number, char *value)
 {
 	stack_t *node = NULL;
+	int val = 0;
 
+	if (value == NULL || !(is_num(value)))
+		handle_error(*stack, line_number, "usage", "push integer", NULL);
+	
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
-		return (NULL);
+		handle_malloc_fail(*stack);
 
+	val = make_number(value);
 	node->n = val;
 	node->next = NULL;
 	node->prev = NULL;
 	if (*stack == NULL)
 	{
 		*stack = node;
-		return (NULL);
+		return;
 	}
 
 	(*stack)->prev = node;
 	node->next = *stack;
 	*stack = node;
-
-	return (NULL);
 }
 
-stack_t *LIFO_pop(stack_t **stack, int val)
+void LIFO_pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *node = NULL;
 
-	(void)val;
+	(void)line_number;
 	if (*stack == NULL)
-	{
-		return (NULL);
-	}
+		return;
 
 	node = *stack;
 	*stack = node->next;
 	if (*stack != NULL)
 		(*stack)->prev = NULL;
-	node->next = NULL;
 
-	return (node);
+	node->next = NULL;
+	free(node);
 }
 
-stack_t *_pall(stack_t **stack, int val)
+void _pall(stack_t **stack, unsigned int line_number)
 {
 	/*int i = 0;*/
 	stack_t *cur = NULL;
 
-	(void)val;
+	(void)line_number;
 	if (*stack == NULL)
-		return (0);
+		return;
 	
 	cur = *stack;
 	while (cur != NULL)
@@ -59,8 +60,6 @@ stack_t *_pall(stack_t **stack, int val)
 		cur = cur->next;
 		/*i++;*/
 	}
-
-	return (NULL);
 }
 
 void free_stack(stack_t *head)

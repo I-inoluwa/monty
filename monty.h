@@ -37,7 +37,7 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	stack_t *(*f)(stack_t **stack, int val);
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /*
@@ -49,6 +49,10 @@ typedef struct instruction_s
  */
 
 extern char *allowed[];
+extern char **code_arr;
+extern char **line_arr;
+
+void global_define(void);
 
 void error_out(char *filename, ...);
 
@@ -62,7 +66,7 @@ size_t _strlen(const char *s);
 char *join_strs(char *s1, char *s2, char *delim);
 int match_str(char *command, char *str);
 
-int validity_check(char *op_code, char *val, unsigned int line_number);
+int validity_check(char *op_code, unsigned int line_number);
 void check_file_stat(int fd, char *filename);
 int opcode_in(char *opcode);
 
@@ -71,14 +75,23 @@ int *get_str_len(char *str, int ix, char *delim);
 int is_delim(char c, char *delim);
 int get_word_count(char *str, char *delim);
 
-stack_t *LIFO_pop(stack_t **stack, int val);
-stack_t *_push(stack_t **stack, int val);
-stack_t *_pall(stack_t **stack, int val);
+void _push(stack_t **stack, unsigned int line_number, char *value);
+void LIFO_pop(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, unsigned int line_number);
+void _pint(stack_t **stack, unsigned int line_number);
 
-int operations(char *line, int line_number, stack_t **stack, int fd);
+void start_operation(stack_t **stack);
+int operations(int line_number, stack_t **stack);
+
+void handle_malloc_fail();
+void handle_error(stack_t *stack, int line_number, ...);
 
 void free_stack(stack_t *head);
+void free_global(stack_t *stack);
 
-int handle_file(char *filename, stack_t **stack);
+char *handle_file(char *filename, char *line);
+
+char *_strdup(char *str);
+int handle_space(char *line);
 
 #endif

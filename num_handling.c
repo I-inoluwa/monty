@@ -38,7 +38,7 @@ char *num_to_str(unsigned int num)
 
 int make_number(char *str)
 {
-	int i, num = 0;
+	int i, num = 0, flag = 1;
 	char c;
 
 	if (!(is_num(str)))
@@ -48,24 +48,27 @@ int make_number(char *str)
 	{
 		if (i == 0 && c == '-')
 		{
-			num = -1;
+			num = 1;
+			flag = -1;
 			continue;
 		}
 
 		if ((c >= '0' && c <= '9'))
 		{
-			if (num == -1)
+			if (i == 1 && num == 1)
 				num *= c - '0';
 			else
 				num = (num * 10) + (c - '0');
 		}
 	}
 
+	num *= flag;
+
 	return (num);
 }
 
 /**
- * is_num - checks if a string is a string of +ve num chars;
+ * is_num - checks if a string is a string of unteger chars;
  * @str: string to be checked;
  * Return: returns (1) if true, (0) otherwise;
  */
@@ -80,6 +83,8 @@ int is_num(char *str)
 
 	for (i = 0; (c = str[i]); i++)
 	{
+		if (i == 0 && c == '-')
+			continue;
 		if (!(c >= '0' && c <= '9'))
 			return (0);
 	}
