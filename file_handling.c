@@ -104,7 +104,7 @@ void check_file_stat(int fd, char *filename)
 	if (fd == -1)
 	{
 		err_msg = join_strs("Can't open file", filename, " ");
-		error_out("error", err_msg, NULL);
+		error_out("Error", err_msg, NULL);
 		free(err_msg);
 		exit(EXIT_FAILURE);
 	}
