@@ -48,6 +48,7 @@ typedef struct instruction_s
  *} instruction_t;
  */
 
+extern int flag;
 extern char **code_arr;
 extern char **line_arr;
 extern instruction_t opcodes[];
@@ -79,7 +80,7 @@ int *get_str_len(char *str, int ix, char *delim);
 int is_delim(char c, char *delim);
 int get_word_count(char *str, char *delim);
 
-void _push(stack_t **stack, unsigned int line_number, char *value);
+void _push(stack_t **stack, unsigned int line_number, char *value, int flag);
 void LIFO_pop(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 void _pint(stack_t **stack, unsigned int line_number);
@@ -96,6 +97,7 @@ void _rotr(stack_t **stack, unsigned int line_number);
 
 void start_operation(stack_t **stack);
 int operations(int line_number, int index, stack_t **stack);
+void do_main(stack_t **stack, char **code_arr, int line_number);
 
 void handle_malloc_fail();
 void handle_error(stack_t *stack, int line_number, ...);

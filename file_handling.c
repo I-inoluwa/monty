@@ -32,7 +32,7 @@ char *extend(char *line)
 
 char *handle_file(char *filename, char *line)
 {
-	char c, prev = '~';
+	char c, prev = '\n';
 	int i = 0, fd = 0, bytes = 0;
 
 	fd = open(filename, O_RDONLY);

@@ -2,6 +2,8 @@
 
 instruction_t opcodes[] = {
 		{"push", NULL},
+		{"stack", NULL},
+		{"queue", NULL},
 		{"pall", _pall},
 		{"pop", LIFO_pop},
 		{"pint", _pint},
@@ -21,9 +23,11 @@ instruction_t opcodes[] = {
 
 char **code_arr;
 char **line_arr;
+int flag;
 
 void global_define(void)
 {
 	code_arr = NULL;
 	line_arr = NULL;
+	flag = 0;
 }

@@ -1,21 +1,16 @@
-push 76
+queue
+push 1
 push 2
 push 3
+pall
+stack
 push 4
-push 10
-push 110
-#push 0
-push 108
-push 111
-push 111
-push 104
-push 99
-push 83
-		#this is a comment.
-#pchar
-#pstr
+push 5
+push 6
 pall
-pstr
-rotr
+add
 pall
-pstr
+queue
+push 11111
+add
+pall
