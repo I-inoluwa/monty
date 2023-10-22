@@ -19,7 +19,7 @@ void _push(stack_t **stack, unsigned int line_number, char *value, int flag)
 
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
-		handle_malloc_fail(*stack);
+		handle_malloc_fail();
 
 	val = atoi(value);
 	node->n = val;
