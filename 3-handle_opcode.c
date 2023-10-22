@@ -35,7 +35,10 @@ void _pstr(stack_t **stack, unsigned int line_number)
 	stack_t *cur = NULL;
 
 	if (*stack == NULL)
+	{
 		printf("\n");
+		return;
+	}
 
 	cur = *stack;
 	while (cur != NULL)
