@@ -7,5 +7,5 @@ push 3
 push 0
 swap
 pall
-		#this is a comment.
+		this is a comment.
 pall

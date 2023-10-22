@@ -49,19 +49,6 @@ int operations(int line_number, int index, stack_t **stack)
 {
 	char *line = NULL, *temp = NULL;
 	int i = 0;
-	instruction_t opcodes[] = {
-		{"pall", _pall},
-		{"pop", LIFO_pop},
-		{"pint", _pint},
-		{"swap", _swap},
-		{"add", _add},
-		{"nop", NULL},
-		{"sub", _sub},
-		{"div", _div},
-		{"mul", _mul},
-		{"mod", _mod},
-		{NULL, NULL}
-	};
 
 	if (line_arr == NULL)
 		return (1);
@@ -85,7 +72,7 @@ int operations(int line_number, int index, stack_t **stack)
 	if (match_str(code_arr[0], "push"))
 		_push(stack, line_number, code_arr[1]);
 
-	for (i = 0; opcodes[i].opcode != NULL; i++)
+	for (i = 1; opcodes[i].opcode != NULL; i++)
 	{
 		if (match_str(code_arr[0], opcodes[i].opcode))
 		{

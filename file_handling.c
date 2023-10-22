@@ -92,9 +92,9 @@ int opcode_in(char *opcode)
 {
 	int ind = 0;
 
-	for (ind = 0; allowed[ind] != NULL; ind++)
+	for (ind = 0; opcodes[ind].opcode != NULL; ind++)
 	{
-		if (match_str(opcode, allowed[ind]))
+		if (match_str(opcode, opcodes[ind].opcode))
 			return (1);
 	}
 

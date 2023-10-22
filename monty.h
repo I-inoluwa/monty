@@ -48,9 +48,9 @@ typedef struct instruction_s
  *} instruction_t;
  */
 
-extern char *allowed[];
 extern char **code_arr;
 extern char **line_arr;
+extern instruction_t opcodes[];
 
 void global_define(void);
 

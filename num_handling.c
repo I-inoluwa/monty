@@ -31,7 +31,7 @@ char *num_to_str(unsigned int num)
 }
 
 /**
- * make_number - converts a printable num string to an integer;
+ * make_number - converts a printable num string to an integer (HAS ISSUES);
  * @str: string to be converted;
  * Return: an integer;
  */
