@@ -1,4 +1,4 @@
-push 1
+push 76
 push 2
 push 3
 push 4
@@ -15,7 +15,7 @@ push 83
 #pchar
 #pstr
 pall
-rotl
+pstr
+rotr
 pall
-
 pstr

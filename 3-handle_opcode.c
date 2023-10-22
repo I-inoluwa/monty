@@ -74,3 +74,25 @@ void _rotl(stack_t **stack, unsigned int line_number)
 
 	(void)line_number;
 }
+
+void _rotr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *cur = NULL, *bot = NULL;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+		return;
+
+	cur = *stack;
+
+	while (cur->next != NULL)
+		cur = cur->next;
+
+	bot = cur;
+	bot->prev->next = NULL;
+	bot->next = *stack;
+	bot->prev = NULL;
+	(*stack)->prev = bot;
+	*stack = bot;
+
+	(void)line_number;
+}

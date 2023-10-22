@@ -67,7 +67,6 @@ size_t _strlen(const char *s);
 void str_slice(char *s1, int ind, int jnd, char *s2);
 char *_str_slice(char *str, int ind, int jnd);
 
-
 char *join_strs(char *s1, char *s2, char *delim);
 int match_str(char *command, char *str);
 
@@ -93,6 +92,7 @@ void _mod(stack_t **stack, unsigned int line_number);
 void _pchar(stack_t **stack, unsigned int line_number);
 void _pstr(stack_t **stack, unsigned int line_number);
 void _rotl(stack_t **stack, unsigned int line_number);
+void _rotr(stack_t **stack, unsigned int line_number);
 
 void start_operation(stack_t **stack);
 int operations(int line_number, int index, stack_t **stack);
