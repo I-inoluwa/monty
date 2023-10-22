@@ -1,5 +1,14 @@
 #include "monty.h"
 
+/**
+ * _push - function to push all passed data to stack;
+ * @stack: main data structure of monty programme;
+ * @line_number: line number of current operation;
+ * @value: value of data to be pushed;
+ * @flag: (0) implies stack, (1) implies queue data structure;
+ * Return: returns void;
+ */
+
 void _push(stack_t **stack, unsigned int line_number, char *value, int flag)
 {
 	stack_t *node = NULL, *cur = NULL;
@@ -37,8 +46,14 @@ void _push(stack_t **stack, unsigned int line_number, char *value, int flag)
 		cur->next = node;
 		node->prev = cur;
 	}
-
 }
+
+/**
+ * _pint - function to print the top element of the stack;
+ * @stack: main data structure of monty programme;
+ * @line_number: line number of current operation;
+ * Return: returns nothing;
+ */
 
 void _pint(stack_t **stack, unsigned int line_number)
 {
@@ -47,6 +62,13 @@ void _pint(stack_t **stack, unsigned int line_number)
 
 	printf("%d\n", (*stack)->n);
 }
+
+/**
+ * LIFO_pop - function to pop the top element of the stack;
+ * @stack: main data structure of monty programme;
+ * @line_number: line number of current operation;
+ * Return: returns nothing;
+ */
 
 void LIFO_pop(stack_t **stack, unsigned int line_number)
 {
@@ -64,6 +86,13 @@ void LIFO_pop(stack_t **stack, unsigned int line_number)
 	node->next = NULL;
 	free(node);
 }
+
+/**
+ * _pall - function to print all elements of the stack;
+ * @stack: main data structure of monty programme;
+ * @line_number: line number of current operation;
+ * Return: returns nothing;
+ */
 
 void _pall(stack_t **stack, unsigned int line_number)
 {

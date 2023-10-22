@@ -37,7 +37,7 @@ char *_strdup(char *str)
 }
 
 /**
- * handle_space - function to handle when the input is only spaces;
+ * handle_space_comment - function to handle when the input is only spaces;
  * @line: non-parsed input string;
  * Return: returns (1) on success, (0) on failure;
  */

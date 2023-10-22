@@ -1,5 +1,12 @@
 #include "monty.h"
 
+/**
+ * _mod - function to divide (modulo) the second element by the top element;
+ * @stack: main data structure of monty programme;
+ * @line_number: line number of current operation;
+ * Return: returns nothing;
+ */
+
 void _mod(stack_t **stack, unsigned int line_number)
 {
 	stack_t *top = NULL, *bot = NULL;
@@ -16,6 +23,13 @@ void _mod(stack_t **stack, unsigned int line_number)
 	LIFO_pop(stack, line_number);
 }
 
+/**
+ * _pchar - function to print the ascii char equivalent to the top element;
+ * @stack: main data structure of monty programme;
+ * @line_number: line number of current operation;
+ * Return: returns nothing, outputs error if value is not ASCII;
+ */
+
 void _pchar(stack_t **stack, unsigned int line_number)
 {
 	stack_t *top = NULL;
@@ -29,6 +43,13 @@ void _pchar(stack_t **stack, unsigned int line_number)
 
 	printf("%c\n", top->n);
 }
+
+/**
+ * _pstr - function to elements of the stack in form of a string (using ASCII);
+ * @stack: main data structure of monty programme;
+ * @line_number: line number of current operation;
+ * Return: returns nothing;
+ */
 
 void _pstr(stack_t **stack, unsigned int line_number)
 {
@@ -53,6 +74,13 @@ void _pstr(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 }
 
+/**
+ * _rotl - function to rotate the stack, making the top element the last;
+ * @stack: main data structure of monty programme;
+ * @line_number: line number of current operation;
+ * Return: returns nothing;
+ */
+
 void _rotl(stack_t **stack, unsigned int line_number)
 {
 	stack_t *cur = NULL, *top = NULL;
@@ -74,6 +102,13 @@ void _rotl(stack_t **stack, unsigned int line_number)
 
 	(void)line_number;
 }
+
+/**
+ * _rotr - function to rotate the stack, making the bottom element the first;
+ * @stack: main data structure of monty programme;
+ * @line_number: line number of current operation;
+ * Return: returns nothing;
+ */
 
 void _rotr(stack_t **stack, unsigned int line_number)
 {

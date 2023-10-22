@@ -26,5 +26,3 @@ void error_out(char *filename, ...)
 
 	write(STDERR_FILENO, "\n", 1);
 }
-
-

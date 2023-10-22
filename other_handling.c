@@ -1,11 +1,23 @@
 #include "monty.h"
 
-void handle_malloc_fail()
+/**
+ * handle_malloc_fail - handles situations in which there is a malloc failure;
+ * Return: outputs an error, and exits with (1);
+ */
+
+void handle_malloc_fail(void)
 {
 	error_out("Error", "malloc failed", NULL);
 	free_global(NULL);
 	exit(EXIT_FAILURE);
 }
+
+/**
+ * handle_error - handles error situations;
+ * @stack: main data structure containing all data passed;
+ * @line_number: current line number of instuction being processed;
+ * Return: outputs and error, and exits with (1);
+ */
 
 void handle_error(stack_t *stack, int line_number, ...)
 {
@@ -37,6 +49,12 @@ void handle_error(stack_t *stack, int line_number, ...)
 	exit(EXIT_FAILURE);
 }
 
+/**
+ * free_stack - frees the main data structure of the monty programme;
+ * @head: pointer to start of the data structure;
+ * Return: returns nothing;
+ */
+
 void free_stack(stack_t *head)
 {
 	stack_t *cur = NULL;
@@ -53,3 +71,17 @@ void free_stack(stack_t *head)
 	}
 }
 
+/**
+ * free_global - frees all global variables including the stack;
+ * @stack: main data stucture of monty programme;
+ * Return: returns nothing;
+ */
+
+void free_global(stack_t *stack)
+{
+	free_stack(stack);
+	free_arr(line_arr);
+	free_arr(code_arr);
+	code_arr = NULL;
+	line_arr = NULL;
+}

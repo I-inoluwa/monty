@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * extend - reallocates new memory to a line, to accommodate more input;
+ * @line: line to be reallocated;
+ * Return: returns a  new line;
+ */
+
 char *extend(char *line)
 {
 	char *temp = NULL;
@@ -7,14 +13,14 @@ char *extend(char *line)
 
 	if (line == NULL)
 		return (NULL);
-	
+
 	temp = _strdup(line);
 	free(line);
 
 	line = malloc(sizeof(char) * (_strlen(temp) + 1024));
 	if (line == NULL)
 		handle_malloc_fail();
-	
+
 	for (i = 0; temp[i] != '\0'; i++)
 	{
 		line[i] = temp[i];
@@ -27,7 +33,8 @@ char *extend(char *line)
 /**
  * handle_file - handles file arguments in CLI;
  * @filename: file argument passed;
- * Return: returns xstat;
+ * @line: line argument passed, usually (NULL);
+ * Return: returns a new line;
  */
 
 char *handle_file(char *filename, char *line)
@@ -37,7 +44,7 @@ char *handle_file(char *filename, char *line)
 
 	fd = open(filename, O_RDONLY);
 	check_file_stat(fd, filename);
-		
+
 	line = malloc(sizeof(char) * 1025);
 	if (line == NULL)
 	{
@@ -63,11 +70,17 @@ char *handle_file(char *filename, char *line)
 		i++;
 	}
 	line[i] = '\0';
-	close (fd);
+	close(fd);
 
 	return (line);
 }
 
+/**
+ * validity_check  - checks if an opcode is a valid command;
+ * @op_code: instruction to be checked;
+ * @line_number: line number of said instruction;
+ * Return: returns (0) if instruction is valid;
+ */
 
 int validity_check(char *op_code, unsigned int line_number)
 {
@@ -88,6 +101,12 @@ int validity_check(char *op_code, unsigned int line_number)
 	return (0);
 }
 
+/**
+ * opcode_in - checks if an opcode is present in a list of commands;
+ * @opcode: instruction being checked;
+ * Return: returns (0) if no match;
+ */
+
 int opcode_in(char *opcode)
 {
 	int ind = 0;
@@ -100,6 +119,13 @@ int opcode_in(char *opcode)
 
 	return (0);
 }
+
+/**
+ * check_file_stat - determines if a file is a valid file;
+ * @fd: file descriptor of file;
+ * @filename: filename of the file;
+ * Return: returns nothing;
+ */
 
 void check_file_stat(int fd, char *filename)
 {

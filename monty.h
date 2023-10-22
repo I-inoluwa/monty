@@ -99,7 +99,7 @@ void start_operation(stack_t **stack);
 int operations(int line_number, int index, stack_t **stack);
 void do_main(stack_t **stack, char **code_arr, int line_number);
 
-void handle_malloc_fail();
+void handle_malloc_fail(void);
 void handle_error(stack_t *stack, int line_number, ...);
 
 void free_stack(stack_t *head);

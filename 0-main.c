@@ -1,5 +1,12 @@
 #include "monty.h"
 
+/**
+ * main - main function of the whole code;
+ * @argc: len of the number of arguments passed to terminal;
+ * @argv: an array of all arguments passed;
+ * Return: returns (0) on success, or exits with (1) on fail.
+ */
+
 int main(int argc, char **argv)
 {
 	int xstat = 0;
@@ -30,6 +37,12 @@ int main(int argc, char **argv)
 	return (0);
 }
 
+/**
+ * start_operation - starts the whole operation of the monty processor;
+ * @stack: a data_structure that contains all data passed;
+ * Return: returns void;
+ */
+
 void start_operation(stack_t **stack)
 {
 	int ind = 0, xstat = 1;
@@ -44,6 +57,14 @@ void start_operation(stack_t **stack)
 		xstat++;
 	}
 }
+
+/**
+ * operations - performs an operation based on each line passed;
+ * @line_number: line number of line being processed;
+ * @index: index of line in the global line_array variable;
+ * @stack: data structure containing all data passed;
+ * Return: returns the line number in which current operation ends.
+ */
 
 int operations(int line_number, int index, stack_t **stack)
 {
@@ -82,6 +103,14 @@ int operations(int line_number, int index, stack_t **stack)
 	return (line_number);
 }
 
+/**
+ * do_main - an helper function to the operations function.
+ * @stack: data_structure containing all data passed;
+ * @code_arr: global variable representing a parsed line;
+ * @line_number: line number of instruction being processed;
+ * Return: returns nothing;
+ */
+
 void do_main(stack_t **stack, char **code_arr, int line_number)
 {
 	int i = 1;
@@ -95,13 +124,4 @@ void do_main(stack_t **stack, char **code_arr, int line_number)
 			break;
 		}
 	}
-}
-
-void free_global(stack_t *stack)
-{
-	free_stack(stack);
-	free_arr(line_arr);
-	free_arr(code_arr);
-	code_arr = NULL;
-	line_arr = NULL;
 }
