@@ -84,8 +84,8 @@ int is_num(char *str)
 	for (i = 0; (c = str[i]); i++)
 	{
 		if (i == 0 && c == '-')
-			continue;
-		if (!(c >= '0' && c <= '9'))
+			;
+		else if (!(c >= '0' && c <= '9'))
 			return (0);
 	}
 

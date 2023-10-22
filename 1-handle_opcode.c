@@ -12,7 +12,7 @@ void _push(stack_t **stack, unsigned int line_number, char *value)
 	if (node == NULL)
 		handle_malloc_fail(*stack);
 
-	val = make_number(value);
+	val = atoi(value);
 	node->n = val;
 	node->next = NULL;
 	node->prev = NULL;
