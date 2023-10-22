@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 
 void start_operation(stack_t **stack)
 {
-	int ind = 0, xstat = 0;
+	int ind = 0, xstat = 1;
 
 	if (line_arr == NULL)
 		return;
@@ -40,15 +40,14 @@ void start_operation(stack_t **stack)
 	for (ind = 0; line_arr[ind] != NULL; ind++)
 	{
 		if (!(handle_space_comment(line_arr[ind])))
-			xstat = operations(ind + 1, stack);
-
-		(void)xstat;
+			xstat = operations(xstat, ind + 1, stack);
+		xstat++;
 	}
 }
 
-int operations(int line_number, stack_t **stack)
+int operations(int line_number, int index, stack_t **stack)
 {
-	char *line = NULL;
+	char *line = NULL, *temp = NULL;
 	int i = 0;
 	instruction_t opcodes[] = {
 		{"pall", _pall},
@@ -67,10 +66,15 @@ int operations(int line_number, stack_t **stack)
 	if (line_arr == NULL)
 		return (1);
 	
-	line = line_arr[line_number - 1];
-	code_arr = split_str(line, " \t");
+	line = line_arr[index - 1];
+	for (i = 0; line[i] == '`'; i++)
+		line_number++;
+	
+	temp = _str_slice(line, i, _strlen(line) - 1);
+	code_arr = split_str(temp, " \t");
+	free(temp);
 	if (code_arr == NULL)
-		return (99);
+		return (line_number);
 
 	if (validity_check(code_arr[0], line_number))
 	{
@@ -94,7 +98,7 @@ int operations(int line_number, stack_t **stack)
 
 	free_arr(code_arr);
 	code_arr = NULL;
-	return (i);
+	return (line_number);
 }
 
 void free_global(stack_t *stack)

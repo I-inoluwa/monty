@@ -61,8 +61,13 @@ int make_number(char *str);
 int is_num(char *str);
 size_t array_len(char **array);
 void free_arr(char **array);
+int print_tab(char **array);
 
 size_t _strlen(const char *s);
+void str_slice(char *s1, int ind, int jnd, char *s2);
+char *_str_slice(char *str, int ind, int jnd);
+
+
 char *join_strs(char *s1, char *s2, char *delim);
 int match_str(char *command, char *str);
 
@@ -87,7 +92,7 @@ void _mul(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
 
 void start_operation(stack_t **stack);
-int operations(int line_number, stack_t **stack);
+int operations(int line_number, int index, stack_t **stack);
 
 void handle_malloc_fail();
 void handle_error(stack_t *stack, int line_number, ...);

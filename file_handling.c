@@ -32,7 +32,7 @@ char *extend(char *line)
 
 char *handle_file(char *filename, char *line)
 {
-	char c;
+	char c, prev = '~';
 	int i = 0, fd = 0, bytes = 0;
 
 	fd = open(filename, O_RDONLY);
@@ -53,9 +53,13 @@ char *handle_file(char *filename, char *line)
 		}
 
 		bytes = read(fd, &c, sizeof(char));
+		if (prev == '\n' && c == '\n')
+			c = '`';
 		if (bytes == -1 || bytes == 0)
 			break;
 		line[i] = c;
+		if (c != '`')
+			prev = c;
 		i++;
 	}
 	line[i] = '\0';
