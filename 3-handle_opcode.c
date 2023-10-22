@@ -15,3 +15,37 @@ void _mod(stack_t **stack, unsigned int line_number)
 
 	LIFO_pop(stack, line_number);
 }
+
+void _pchar(stack_t **stack, unsigned int line_number)
+{
+	stack_t *top = NULL;
+
+	if (*stack == NULL)
+		handle_error(*stack, line_number, "can't pchar, stack empty", NULL);
+
+	top = *stack;
+	if (top->n < 0 || top->n > 127)
+		handle_error(*stack, line_number, "can't pchar, value out of range", NULL);
+
+	printf("%c\n", top->n);
+}
+
+void _pstr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *cur = NULL;
+
+	if (*stack == NULL)
+		printf("\n");
+
+	cur = *stack;
+	while (cur != NULL)
+	{
+		if (cur->n <= 0 || cur->n > 127)
+			break;
+		printf("%c", cur->n);
+		cur = cur->next;
+	}
+	printf("\n");
+
+	(void)line_number;
+}
