@@ -52,3 +52,25 @@ void _pstr(stack_t **stack, unsigned int line_number)
 
 	(void)line_number;
 }
+
+void _rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *cur = NULL, *top = NULL;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+		return;
+
+	cur = *stack;
+	top = *stack;
+
+	while (cur->next != NULL)
+		cur = cur->next;
+
+	*stack = top->next;
+	(*stack)->prev = NULL;
+	cur->next = top;
+	top->prev = cur;
+	top->next = NULL;
+
+	(void)line_number;
+}

@@ -11,11 +11,11 @@ push 111
 push 104
 push 99
 push 83
-pall
 		#this is a comment.
 #pchar
+#pstr
+pall
+rotl
+pall
+
 pstr
-push -1
-
-pchar
-
